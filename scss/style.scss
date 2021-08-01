@@ -1,9 +1,319 @@
 @charset "utf-8";
 
-.hoge {
-    display: block;
-    width: 100px;
-    height: 100px;
-    background-color: red;
+$font: 'Source Sans Pro', sans-serif;
+$f-bold: 400;
+$f-light: 300;
 
+$gray: #aaaaaa;
+
+$breakpoints: (
+    'pc': "screen and (max-width:900px)",
+);
+//$breakpoint: pcで初期設定している
+@mixin md($breakpoint: pc) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
 }
+
+
+html {
+    background-color: rgb(21, 21, 21);
+}
+
+a, p, h1, h2, span, small {
+    color: white;
+    font-family: $font;
+    font-weight: $f-light;
+}
+
+/**
+* header ****************************************************************************************************
+**/
+
+header {
+    position: fixed;
+    width: 100%;
+}
+
+.header_main {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    position: relative;
+    z-index: 999;
+}
+
+.hamburger {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+}
+
+.header_nav {
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    height: 40vh;
+    background-color: #c4c4c4;
+    transition: all .3s;
+    ul {
+        margin-top: 15vh;
+    }
+    li {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+/**
+* /header ****************************************************************************************************
+**/
+
+/**
+* main ****************************************************************************************************
+**/
+
+.container {
+    text-align: center;
+}
+
+.wrapper {
+    max-width: 800px;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.bold {
+    font-weight: $f-bold;
+    font-size: 2.25rem;
+}
+
+.main_visual {
+    display: flex;
+    img {
+        width: 33.33%;
+        height: 100vh;
+        object-fit: cover;
+        overflow: hidden;
+    }
+}
+
+section {
+    margin-bottom: 100px;
+    h2 {
+        display: inline-block;
+        margin: 7px 0 50px;
+        padding-bottom: 5px;
+        font-size: 4rem;
+        border-bottom: 1px solid white;
+    }
+    p {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        line-height: 1.6rem;
+    }
+}
+
+/**
+* info ****************************************************************************************************
+**/
+
+.info {
+    margin-bottom: 150px;
+}
+
+h1 {
+    margin: 70px 0;
+    font-size: 6rem;
+    line-height: 7rem;
+}
+
+/**
+* gallery ****************************************************************************************************
+**/
+.gallery {
+    margin-bottom: 500px;
+}
+
+.gallery_img {
+    li {
+        margin-bottom: 50px;
+    }
+    li:nth-child(odd) {
+        text-align: left;
+    }
+    li:nth-child(even) {
+        text-align: right;
+    }
+    img {
+        max-width: 300px;
+    }
+}
+
+/**
+* access ****************************************************************************************************
+**/
+.access {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/access_bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.303);
+        z-index: 1;
+    }
+    h2, p, a {
+        position: relative;
+        z-index: 100;
+    }
+}
+
+.googlemap {
+    display: inline-block;
+    border: 1px solid $gray;
+    padding: 20px 60px;
+    transition: all .3s;
+    &:hover {
+        background-color: rgba(49, 49, 49, 0.693);
+        color: white;
+    }
+}
+
+/**
+* contact ****************************************************************************************************
+**/
+
+.contact_wrapper {
+    .contact_link {
+        width: 400px;
+        margin: 0 auto 50px;
+    }
+    a {
+        position: relative;
+        line-height: 100px;
+        display: block;
+        width: 100%;
+        height: 100px;
+        border: 1px solid $gray;
+        transition: all .3s;
+        &::before {
+            position: absolute;
+            content: '';
+            width: 100px;
+            height: 1px;
+            background-color: $gray;
+            top: 50%;
+            right: -30px;
+            transition: all .3s;
+        }
+        &::after {
+            position: absolute;
+            content: '';
+            width: 2px;
+            height: 15px;
+            background-color: $gray;
+            top: 35px;
+            right: -24px;
+            transform: skewX(45deg);
+            transition: all .3s;
+        }
+
+        &:hover {
+            opacity: .7;
+            &::before {
+                transform: translateX(10px);
+            }
+            &::after {
+                transform: translateX(10px) skewX(45deg);
+            }
+        }
+    }
+}
+
+/**
+* people ****************************************************************************************************
+**/
+.people {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    bottom: 30vh;
+    right: -166px;
+    transform: rotate(-90deg);
+    z-index: 999;
+    border: 1px solid $gray;
+    border-bottom: none;
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 1px;
+        height: 100px;
+        background-color: $gray;
+        right: 50%;
+    }
+    a {
+        display: block;
+        padding: 20px 50px;
+        transition: all .3s;
+        &:hover {
+            opacity: .7;
+        }
+    }
+}
+
+/**
+* /main ****************************************************************************************************
+**/
+
+/**
+* footer ****************************************************************************************************
+**/
+
+footer {
+    // height: 30vh;
+    border-top: 1px solid white;
+    padding: 80px 30px;
+}
+
+.footer_about {
+    margin-bottom: 50px;
+    p {
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+}
+
+.footer_nav {
+    display: flex;
+    justify-content: space-between;
+    a {
+        margin-right: 20px;
+        font-size: .8rem;
+    }
+    small {
+        font-size: .8rem;
+    }
+    &_sns {
+    }
+    &_policy {
+    }
+}
+
+
+/**
+* /footer ****************************************************************************************************
+**/
