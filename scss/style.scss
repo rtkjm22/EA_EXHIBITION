@@ -20,6 +20,7 @@ $breakpoints: (
 
 html {
     background-color: $bgc;
+    scroll-behavior: smooth;
 }
 
 a, p, h1, h2, span, small {
